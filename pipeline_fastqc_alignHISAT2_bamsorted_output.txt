@@ -35,15 +35,15 @@ fastqc \
 ###first make a directory where my index files will be located
 mkdir /home/nattohz/Fun_RNASeq/Refseq/index_outputs
 ## download An. funestus genome
-wget http://ftp.ensemblgenomes.org/pub/metazoa/release-53/fasta/anopheles_funestus/dna/Anopheles_funestus.AfunF3.dna_sm.toplevel.fa.gz -o /home/nattohz/Fun_RNASeq/Refseq
+wget https://vectorbase.org/common/downloads/Current_Release/AfunestusFUMOZ/fasta/data/VectorBase-57_AfunestusFUMOZ_Genome.fasta -o /home/nattohz/Fun_RNASeq/Refseq
 ##download Ano. funestus GFF file
-wget http://ftp.ensemblgenomes.org/pub/metazoa/release-53/gff3/anopheles_funestus/Anopheles_funestus.AfunF3.53.gff3.gz -o /home/nattohz/Fun_RNASeq/Refseq
-##download Ano. funestus cds file
-wget http://ftp.ensemblgenomes.org/pub/metazoa/release-53/fasta/anopheles_funestus/cds/Anopheles_funestus.AfunF3.cds.all.fa.gz -o /home/nattohz/Fun_RNASeq/Refseq
+wget https://vectorbase.org/common/downloads/Current_Release/AfunestusFUMOZ/gff/data/VectorBase-57_AfunestusFUMOZ.gff -o /home/nattohz/Fun_RNASeq/Refseq
+##download Ano. funestus transcript file for later use with salmon
+wget https://vectorbase.org/common/downloads/Current_Release/AfunestusFUMOZ/fasta/data/VectorBase-57_AfunestusFUMOZ_AnnotatedTranscripts.fasta -o /home/nattohz/Fun_RNASeq/Refseq
 
 ### Build a HISAT2 index for latest Anopheles funestus reference genome using hisat2-build
-hisat2-build /home/nattohz/Fun_RNASeq/Refseq/GCA_003951495.1_AfunF3_genomic.fna \
-/home/nattohz/Fun_RNASeq/Refseq/index_outputs/GCA_003951495.1_AfunF3_genomic_hisat2.idx
+hisat2-build /home/nattohz/Fun_RNASeq/Refseq/VectorBase-57_AfunestusFUMOZ_Genome.fasta \
+/home/nattohz/Fun_RNASeq/Refseq/index_outputs/VectorBase-57_AfunestusFUMOZ_Genome_hisat2.idx
 ##
 ##### Map the reads for all samples sample using HISAT2 #################################################
 mkdir /home/nattohz/Fun_RNASeq/Sam_files_all
