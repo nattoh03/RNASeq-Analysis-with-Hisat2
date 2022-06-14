@@ -40,14 +40,15 @@ wget https://vectorbase.org/common/downloads/Current_Release/AfunestusFUMOZ/fast
 wget https://vectorbase.org/common/downloads/Current_Release/AfunestusFUMOZ/gff/data/VectorBase-57_AfunestusFUMOZ.gff -o /home/nattohz/Fun_RNASeq/Refseq
 ##download Ano. funestus transcript file for later use with salmon
 wget https://vectorbase.org/common/downloads/Current_Release/AfunestusFUMOZ/fasta/data/VectorBase-57_AfunestusFUMOZ_AnnotatedTranscripts.fasta -o /home/nattohz/Fun_RNASeq/Refseq
-
+## load the alignment module #####
+module load hisat2
 ### Build a HISAT2 index for latest Anopheles funestus reference genome using hisat2-build
 hisat2-build /home/nattohz/Fun_RNASeq/Refseq/VectorBase-57_AfunestusFUMOZ_Genome.fasta \
 /home/nattohz/Fun_RNASeq/Refseq/index_outputs/VectorBase-57_AfunestusFUMOZ_Genome_hisat2.idx
 ##
 ##### Map the reads for all samples sample using HISAT2 #################################################
 mkdir /home/nattohz/Fun_RNASeq/Sam_files_all
-hisat2 \
+hisat2 -p 20 \
 -x /home/nattohz/Fun_RNASeq/Refseq/index_outputs/GCA_003951495.1_AfunF3_genomic_hisat2.idx \
 -1 /home/nattohz/Fun_RNASeq/Trimmed_reads_all_samples/${sample}_trimmed_forward_paired.fq.gz \
 -2 /home/nattohz/Fun_RNASeq/Trimmed_reads_all_samples/${sample}_trimmed_reverse_paired.fq.gz \
@@ -55,7 +56,7 @@ hisat2 \
 ##
 ###### Convert the SAM file to a BAM file###################################3###########################
 mkdir /home/nattohz/Fun_RNASeq/Bam_files_all
-samtools view -S \
+samtools view -S -b \
 -o /home/nattohz/Fun_RNASeq/Bam_files_all/${sample}.bam \
 -b /home/nattohz/Fun_RNASeq/Sam_files_all/${sample}.sam
 ##
@@ -70,6 +71,23 @@ samtools index \
 /home/nattohz/Fun_RNASeq/Bam_files_all/${sample}_sorted.bam
 done
 
+
+
+##### PIPING THE MODULE tTO GENERATE AN OUTPUT AND BYPASS INTERMEDIATE BIG FILES ####
+### this combines alignment step, conversion to bam step and sorting the bam file so that you avoid storing sam files, which are size/memory guslers #######
+
+#!/usr/bin/env bash
+module load hisat2/2.2.1
+module load samtools
+mkdir /opt/data/nattohz/Sam_files_all/siaya_sus_bam
+hisat2 -p 20 \
+-x /home/nattohz/Fun_RNASeq/Refseq/index_outputs/VectorBase-57_AfunestusFUMOZ_genomic_hisat2.idx \
+-1 /home/nattohz/Fun_RNASeq/Trimmed_reads_all_samples/Siaya_Sus_trimmed_forward_paired.fq.gz \
+-2 /home/nattohz/Fun_RNASeq/Trimmed_reads_all_samples/Siaya_Sus_trimmed_reverse_paired.fq.gz | \
+samtools view -S -b - | \
+samtools sort -o /opt/data/nattohz/Sam_files_all/siaya_sus_bam/siaya_sus.bam - &&
+samtools index /opt/data/nattohz/Sam_files_all/siaya_sus_sorted.bam 
+##
 
 
 
