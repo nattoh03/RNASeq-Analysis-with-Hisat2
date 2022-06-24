@@ -72,6 +72,11 @@ samtools index \
 done
 
 
+##### Proportion of the Reads Mapping to the Reference
+module load samtools
+samtools flagstat {sample}.bam | awk -F "[(|%]" 'NR == 3 {print $2}'
+
+
 
 ##### PIPING THE MODULE tTO GENERATE AN OUTPUT AND BYPASS INTERMEDIATE BIG FILES ####
 ### this combines alignment step, conversion to bam step and sorting the bam file so that you avoid storing sam files, which are size/memory guslers #######
