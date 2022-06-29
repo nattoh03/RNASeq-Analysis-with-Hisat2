@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 module load fastqc
 mkdir /home/nattohz/Fun_RNASeq/Qc_Raw_reads_all
-fastqc /opt/data/nattohz/Raw_reads/*.fastq.gz \
+cd /opt/data/nattohz/Raw_reads/
+fastqc ./*.fastq.gz \
 -o /home/nattohz/Fun_RNASeq/Qc_Raw_reads_all
 ##
 ##i want to make sure the module/program used for trimming is present by calling it###########
