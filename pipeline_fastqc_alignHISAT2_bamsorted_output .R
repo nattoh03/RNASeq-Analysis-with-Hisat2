@@ -8,6 +8,7 @@ fastqc /opt/data/nattohz/Raw_reads/*.fastq.gz \
 module load trimmomatic/0.39
 ## I also want to create a folder where all my trimmed reads will be stored after trimming ##############
 mkdir /home/nattohz/Fun_RNASeq/Trimmed_reads_all_samples
+cd /opt/data/nattohz/Raw_reads
 for r1 in *_R1.fastq.gz
 do
 echo $r1
