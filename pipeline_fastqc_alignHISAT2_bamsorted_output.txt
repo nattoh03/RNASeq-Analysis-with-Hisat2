@@ -22,14 +22,12 @@ trimmomatic PE ${sample}_R1.fastq.gz ${sample}_R1.fastq.gz \
 ILLUMINACLIP:/home/nattohz/Fun_RNASeq/Adapters/TruSeq3-PE-2.fa:2:30:10:2:keepBothReads LEADING:3 TRAILING:3 MINLEN:30
 ##
 ##
-module load fastqc
 mkdir /home/nattohz/Fun_RNASeq/Qc_Trimmed_all_reads
+cd /home/nattohz/Fun_RNASeq/Qc_Trimmed_all_reads
+module load fastqc
 fastqc \
-/home/nattohz/Fun_RNASeq/Trimmed_reads_all_samples/*_paired.fq.gz \
+*_paired.fq.gz \
 -o /home/nattohz/Fun_RNASeq/Qc_Trimmed_all_reads
-##
-##
-##
 ##
 ############### Alignment with the hisat2 ###########################################################
 ###first make a directory where my index files will be located
