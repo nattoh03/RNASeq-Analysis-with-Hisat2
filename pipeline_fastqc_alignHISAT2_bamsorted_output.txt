@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
-module load fastqc
+## get inside the correct folder
+cd /home/nattohz/Fun_RNASeq/
+## make a sub folder 
+mkdir ./Qc_Raw_reads_all
+## or
 mkdir /home/nattohz/Fun_RNASeq/Qc_Raw_reads_all
+## check the QC of raw reads
+## call the correct module
+module load fastqc /opt/data/nattohz/Raw_reads/
 fastqc /opt/data/nattohz/Raw_reads/*.fastq.gz \
 -o /home/nattohz/Fun_RNASeq/Qc_Raw_reads_all
 ##
@@ -91,9 +98,3 @@ samtools view -S -b - | \
 samtools sort -o /opt/data/nattohz/Sam_files_all/siaya_sus_bam/siaya_sus.bam - &&
 samtools index /opt/data/nattohz/Sam_files_all/siaya_sus_sorted.bam 
 ##
-
-
-
-
-
-
