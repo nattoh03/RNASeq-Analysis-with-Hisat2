@@ -3,17 +3,18 @@
 cd /home/nattohz/Fun_RNASeq/
 ## make a sub folder 
 mkdir ./Qc_Raw_reads_all
-## or
+## or if working from unkown folder, make a directory in the correct folder
 mkdir /home/nattohz/Fun_RNASeq/Qc_Raw_reads_all
-## check the QC of raw reads
+## check the QC of raw reads, load correct module in the folder with the raw reads and run for all samples
 ## call the correct module
 module load fastqc /opt/data/nattohz/Raw_reads/
+## run (check qc) of all samples and direct the output to a given folder
 fastqc /opt/data/nattohz/Raw_reads/*.fastq.gz \
 -o /home/nattohz/Fun_RNASeq/Qc_Raw_reads_all
 ##
-##i want to make sure the module/program used for trimming is present by calling it###########
+## make sure the module/program used for trimming is present by calling it ###########
 module load trimmomatic/0.39
-## I also want to create a folder where all my trimmed reads will be stored after trimming ##############
+## create a folder where all my trimmed reads will be stored after trimming ##############
 mkdir /home/nattohz/Fun_RNASeq/Trimmed_reads_all_samples
 for r1 in *_R1.fastq.gz
 do
