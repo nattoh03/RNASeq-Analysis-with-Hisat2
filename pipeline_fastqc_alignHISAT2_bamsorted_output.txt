@@ -72,7 +72,7 @@ samtools sort \
 -o /home/nattohz/Fun_RNASeq/Sam_files_all/${sample}_sorted.bam /home/nattohz/Fun_RNASeq/Bam_files_all/${sample}.bam
 ##
 ##
-#####Index the BAM file so that it can be read efficiently by IGV#####################
+##### Index the BAM file so that it can be read efficiently by IGV #####################
 samtools index \
 /home/nattohz/Fun_RNASeq/Bam_files_all/${sample}_sorted.bam
 done
