@@ -6,10 +6,11 @@ fastqc ./*.fastq.gz \
 -o /home/nattohz/Fun_RNASeq/Qc_Raw_reads_all
 ##
 ##i want to make sure the module/program used for trimming is present by calling it###########
+## ensure i am still in the same folder
+cd /opt/data/nattohz/Raw_reads/
 module load trimmomatic/0.39
 ## I also want to create a folder where all my trimmed reads will be stored after trimming ##############
 mkdir /home/nattohz/Fun_RNASeq/Trimmed_reads_all_samples
-cd /opt/data/nattohz/Raw_reads
 for r1 in *_R1.fastq.gz
 do
 echo $r1
@@ -24,10 +25,11 @@ trimmomatic PE ${sample}_R1.fastq.gz ${sample}_R1.fastq.gz \
 ILLUMINACLIP:/home/nattohz/Fun_RNASeq/Adapters/TruSeq3-PE-2.fa:2:30:10:2:keepBothReads LEADING:3 TRAILING:3 MINLEN:30
 ##
 ##
-module load fastqc
 mkdir /home/nattohz/Fun_RNASeq/Qc_Trimmed_all_reads
+cd /home/nattohz/Fun_RNASeq/Trimmed_reads_all_samples
+module load fastqc
 fastqc \
-/home/nattohz/Fun_RNASeq/Trimmed_reads_all_samples/*_paired.fq.gz \
+./*_paired.fq.gz \
 -o /home/nattohz/Fun_RNASeq/Qc_Trimmed_all_reads
 ##
 ##
