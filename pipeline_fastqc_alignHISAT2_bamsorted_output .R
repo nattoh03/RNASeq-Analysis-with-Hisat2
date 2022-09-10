@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
+cd /opt/data/nattohz/Raw_reads/
 module load fastqc
 mkdir /home/nattohz/Fun_RNASeq/Qc_Raw_reads_all
-cd /opt/data/nattohz/Raw_reads/
 fastqc ./*.fastq.gz \
 -o /home/nattohz/Fun_RNASeq/Qc_Raw_reads_all
 ##
