@@ -73,10 +73,3 @@ samtools sort \
 samtools index \
 /home/nattohz/Fun_RNASeq/Bam_files_all/${sample}_sorted.bam
 done
-
-
-
-
-
-
-
