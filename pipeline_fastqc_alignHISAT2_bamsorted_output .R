@@ -34,7 +34,6 @@ fastqc \
 ##
 ##
 ##
-##
 ############### Alignment with the hisat2 ###########################################################
 ###first make a directory where my index files will be located
 mkdir /home/nattohz/Fun_RNASeq/Refseq/index_outputs
