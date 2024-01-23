@@ -11,6 +11,7 @@ source
 # RNA-seq analysis with with Subjuct pipeline
 
 #1 Download the reference genome of An arabiensis from Vectorbase
+/
 wget https://vectorbase.org/common/downloads/Current_Release/AarabiensisDONGOLA2021/fasta/data/VectorBase-57_AarabiensisDONGOLA2021_Genome.fasta
 
 #2 indexing the reference genome with subhead-build
